@@ -1,0 +1,11 @@
+# heavy / generated — never commit
+.venv/
+data/
+outputs/
+.vllm_cache/
+unsloth_compiled_cache/
+__pycache__/
+*.pyc
+agent/logs/
+scratch/
+.obsidian/

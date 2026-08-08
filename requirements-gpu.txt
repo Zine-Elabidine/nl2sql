@@ -1,0 +1,17 @@
+# GPU inference + training stack for the RTX 5060Ti (Blackwell, sm_120).
+# Install AFTER the GPU is free, into the same venv:
+#   uv pip install --python ~/nl2sql/.venv/bin/python -r requirements-gpu.txt
+#
+# NOTE (Blackwell): needs PyTorch built against CUDA 12.8+. If the default
+# wheel lacks sm_120, install from the cu128 index:
+#   uv pip install --python ~/nl2sql/.venv/bin/python torch --index-url https://download.pytorch.org/whl/cu128
+# then the rest below.
+
+torch
+transformers
+accelerate
+vllm
+unsloth
+trl
+peft
+bitsandbytes

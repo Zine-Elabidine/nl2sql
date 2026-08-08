@@ -1,0 +1,32 @@
+# LiteLLM proxy: Anthropic /v1/messages front  →  hosted_vllm back.
+#
+# This is the "last mile" that lets the Claude Agent SDK (which only speaks the
+# Anthropic wire format) drive our locally-served open model: an openai-family
+# provider on a custom base_url must be routed as hosted_vllm. See WIRING.md.
+#
+# Run order:
+#   1) serve the model with vLLM (OpenAI-compatible) on :8001
+#        vllm serve Qwen/Qwen2.5-Coder-7B-Instruct \
+#          --enable-auto-tool-choice --tool-call-parser hermes \
+#          --quantization fp8 --gpu-memory-utilization 0.85 \
+#          --enforce-eager --max-model-len 8192 --port 8001
+#   2) litellm --config agent/litellm_config.yaml --port 4000
+#   3) point the agent at ANTHROPIC_BASE_URL=http://localhost:4000
+#
+# The model_name "sql-agent" is what run_agent.py passes as ClaudeAgentOptions.model.
+# Swap the backend model_name below to Snowflake/Arctic-Text2SQL-R1-7B to test Arctic.
+
+model_list:
+  - model_name: sql-agent
+    litellm_params:
+      model: hosted_vllm/Qwen/Qwen2.5-7B-Instruct
+      api_base: http://localhost:8002/v1
+      api_key: none
+
+litellm_settings:
+  # keep the proxy quiet-ish; flip to DEBUG when diagnosing tool-call drops
+  drop_params: true
+
+general_settings:
+  # no auth on the litellm proxy itself — local only
+  master_key: null
