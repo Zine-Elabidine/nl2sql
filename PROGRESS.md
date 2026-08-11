@@ -1052,3 +1052,13 @@ composite reward → v2/v3 flat → Arctic counter-lesson → Session 6 lit → 
 (3) README draft from FINDINGS/TECHNIQUES + scoreboard, (4) publish checklist
 (secrets audit done for code files 2026-08-08 — clean; recheck notebooks/results
 before going public).
+
+### SESSION 10 (2026-08-11) — GRPO math study material built
+No runs. Recapped the run-#1 collapse story, then built the track-2d study
+reference: ~/Research/Study/grpo-math.html — REINFORCE→baseline→PPO→GRPO with
+symbol table, piece-by-piece breakdowns, the step-200/collapsed/saturated groups
+computed by hand, telemetry decoder, knob→math map. Milestone questions at the
+bottom = the gate.
+NEXT: study that page (track 2d), then resume the log walkthrough at the
+composite-reward fix → v2 saturation → v3 flat → Arctic counter-lesson →
+Session 6 lit → self-consistency; append RL lessons to FINDINGS.md as we go.
