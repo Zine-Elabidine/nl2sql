@@ -1062,3 +1062,23 @@ bottom = the gate.
 NEXT: study that page (track 2d), then resume the log walkthrough at the
 composite-reward fix → v2 saturation → v3 flat → Arctic counter-lesson →
 Session 6 lit → self-consistency; append RL lessons to FINDINGS.md as we go.
+
+### SESSION 11 (2026-09-17) — walkthrough resumed: arms 1-3 recapped
+No runs. Re-read arms 1-2 in depth + arm 3 overview.
+- FINDINGS.md: added "Decoding & benchmarking lessons (from the SLM-SQL arm)" —
+  8 portable items (protocol behind headline numbers, diagnose-before-fix,
+  measure-the-ceiling-of-a-fix, greedy=absorbing state, rep-penalty wrong tool for
+  structured output, sampling as voting substrate, never report a probe).
+- TWO LOOSE ENDS confirmed undone (checked results/): (1) SLM-SQL self-consistency
+  n=8 to reproduce their 67.3% — machinery now exists (eval/vote.py), never run on
+  SLM-SQL; (2) Arctic follow-ups (a) bf16 and (b) --template omnisql to close the
+  ~7pt gap to 68.9 — neither run. The omnisql rerun is ~35min and likely the bigger
+  half of that gap. Both are cheap README "next steps" or quick pre-publish wins.
+- Also unexplained in-log: SLM-SQL generic+greedy 37.1% (pass 1) vs 40.6% (pass 3),
+  same nominal config; likely --sample-rows 3 + official-faithful scorer, NOT logged.
+  Verify or phrase carefully in the README.
+NEXT: chapter 3 onward — composite reward -> v2 saturated groups -> v3 flat (50.9)
+-> "starved the trainer" diagnosis -> Arctic counter-lesson -> Session 6 RL theory
+-> self-consistency. GRPO math page (~/Research/Study/grpo-math.html) still the
+recommended prerequisite; user has the intuition (sample N, score, push toward
+better-THAN-GROUP-AVERAGE), deep math deferred.

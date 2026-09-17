@@ -28,4 +28,44 @@
    ~one token of loss difference, totally wrong result. If the loss barely sees your
    failure mode, training won't remove it.
 
+## Decoding & benchmarking lessons (from the SLM-SQL arm)
+
+1. **Ask what protocol produced a published number.** A headline score can be a whole
+   pipeline (sample N + think + vote + merge), not one pass of the model. SLM-SQL's
+   67.3% vs 43.3% single-pass is the same model, different protocol. Compare
+   like-for-like or you are comparing a model to a system.
+
+2. **A cheap model that needs voting is not cheap.** Cost per answer = model size x
+   number of samples + the voting machinery you have to build and maintain.
+
+3. **Diagnose before you fix.** The first theory (outputs are truncated, raise the
+   token limit) was wrong: the output WAS truncated, but because a degenerate loop ate
+   the budget. Doubling the limit just gave the loop more room. A symptom can be real
+   and its obvious cause still wrong — run the ruling-out experiment first.
+
+4. **Measure how much a fix CAN buy before building it.** Splitting failures showed
+   loops caused only ~7 of 50 errors; the clean outputs were still only 33% correct.
+   So perfect loop-fixing had a small ceiling and the real problem was elsewhere. Do
+   this decomposition before optimizing anything.
+
+5. **Greedy decoding turns a bad token into a permanent state.** Repetition is
+   self-reinforcing: each repeat is more evidence for the pattern, so its probability
+   climbs toward 1.0 and argmax can never leave. Sampling (temperature + top_p) only
+   needs one lucky roll to escape. It reduces the damage; it does not cure it (22% of
+   outputs still degenerated).
+
+6. **Repetition penalty is the wrong tool for structured output.** It demotes any
+   token already seen, and it cannot tell pathological repetition from required
+   repetition. SQL, code, JSON and XML must repeat identifiers, keywords and
+   punctuation — so the penalty breaks correct output while barely touching the loop
+   (EX halved). Blunt statistical fix, structural problem.
+
+7. **Sampling has a second, bigger use: it is the substrate for voting.** Diversity
+   that looks like noise at temperature 0.8 is exactly what self-consistency needs —
+   generate N, check them against reality, keep the answer most of them agree on.
+
+8. **Never report a probe.** A small --limit slice is usually not a random sample
+   (the first 50 BIRD dev examples are all one hard DB). Probes rank configs wrongly:
+   ours flipped on the full set. Use probes to debug plumbing; report the full set.
+
 *(more sections added as we go)*
