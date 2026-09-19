@@ -1082,3 +1082,23 @@ NEXT: chapter 3 onward — composite reward -> v2 saturated groups -> v3 flat (5
 -> self-consistency. GRPO math page (~/Research/Study/grpo-math.html) still the
 recommended prerequisite; user has the intuition (sample N, score, push toward
 better-THAN-GROUP-AVERAGE), deep math deferred.
+
+### SESSION 12 (2026-09-19) — REINFORCE understood; study pages extended
+No runs. Study session on track 2d.
+- NEW: ~/Research/Study/rl-primer.html — RL vocabulary translated for LLMs
+  (mapping table, 8 core concepts, "what you can safely skip", family tree,
+  RLHF vs RLVR). Read-once prerequisite; cross-linked both ways with grpo-math.
+- grpo-math.html §2 rebuilt around FAILURE-FIRST teaching (what actually made it
+  click): Monte Carlo rule + its 2 requirements, then Attempt A (f=r(y) -> scalar,
+  wrong object) and Attempt B (f=grad r(y) -> structurally zero, SQLite has no
+  theta), then the operator swap grad-E vs E-grad. Symbol table now states grad is
+  a VECTOR (one entry per parameter).
+- CORRECTION made: primer had called PPO/GRPO "just off-policy" — WRONG. Both are
+  ON-POLICY (same family as REINFORCE); the importance ratio exists to PRESERVE the
+  on-policy approximation across multiple epochs per batch, not to escape it. With
+  TRL num_iterations=1 (our default) ratio == 1, strictly on-policy. User caught it.
+STATUS: REINFORCE = understood (log-derivative trick, why sampling failed naively).
+NEXT: §3 baseline (short: A = r - b, unbiased for any b, proof hinges on
+probabilities summing to 1) -> §4 GRPO (group mean AS the baseline) -> §5 the three
+groups by hand. THEN resume PROGRESS.md walkthrough at line ~447 (composite reward
+-> v2 saturation -> v3 flat -> Arctic counter-lesson -> Session 6 theory -> SC).
