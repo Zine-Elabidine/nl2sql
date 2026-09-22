@@ -2,7 +2,7 @@
 
 **Last updated:** 2026-06-26
 **Owner:** Zine · **Machine:** local RTX 5060 Ti 16GB (Blackwell sm_120), CUDA driver 13.2
-**Project dir:** `~/nl2sql/` · **Plan:** `~/.claude/plans/piped-wondering-pearl.md` · **Research:** `~/Downloads/nl2sql_research_notes.md`
+**Project dir:** `~/nl2sql/` · **Notes:** `FINDINGS.md`, `TECHNIQUES.md`
 
 ---
 

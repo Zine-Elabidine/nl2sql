@@ -1,8 +1,8 @@
 # nl2sql — EX harness + model bake-off
 
 Goal: adopt strong open NL→SQL models **and** fine-tune our own, graded by
-**Execution Accuracy (EX)** on BIRD dev (Spider as floor). Plan:
-`~/.claude/plans/piped-wondering-pearl.md`. Research: `~/Downloads/nl2sql_research_notes.md`.
+**Execution Accuracy (EX)** on BIRD dev (Spider as floor).
+Findings and mechanisms are written up in `FINDINGS.md` and `TECHNIQUES.md`.
 
 ## Layout
 - `eval/`   — the EX harness (CPU-only; no ML stack needed to run it)
